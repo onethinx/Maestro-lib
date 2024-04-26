@@ -1,0 +1,137 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0",
+                "set ENABLE_CM0 0"
+            ],
+            "openOCDLaunchCommands": [
+              //  "tcl_port disabled",
+              //  "telnet_port disabled",
+               // "cmsis_dap_vid_pid 0xc251 0xf001; cmsis_dap_backend hid",
+                //"cmsis_dap_serial 141610F301237400",                          // Select debugger if you have multiple connected
+                //"kitprog3 power_config on 3300"
+               // "reset_config srst_only;adapter_nsrst_delay 1000" 
+            ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+
+            "overrideRestartCommands": [
+                "monitor reset init",
+                "monitor reset run",
+                //"monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartSessionCommands": [
+                "monitor gdb_sync",
+                "stepi",
+                "tbreak main"
+            ],
+            "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",      // svdFile is optional, it can be very large.
+            "runToEntryPoint": "main",                                          // if true, program will halt at main. Not used for a restart     
+            "preLaunchTask": "${command:otx.preLaunch}",                        // otx.preLaunch will build the project to prevent unmatched source code debugging
+            "showDevDebugOutput": "none",                                       // Shows output of GDB, helpful when something is not working right
+        },
+        // When using 'attach', make sure your program is running on the board and that your executable matches
+        // the image in the chip exactly, or else strange things can happen with breakpoint, variables, etc.
+        {
+            "name": "Attach",
+            "type": "cortex-debug",
+            "request": "attach",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0",
+                "set ENABLE_CM0 0"
+            ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "overrideAttachCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                //"set output-radix 16",                                        // Comment this out if you want decimal output instead of hexadecimal
+                "monitor halt"
+            ],
+            "overrideRestartCommands": [
+                "monitor reset init",
+                "monitor reset run",
+                //"monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartSessionCommands": [
+                "monitor gdb_sync",
+                "stepi",
+                "tbreak main"
+            ],
+            "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",      // svdFile is optional, it can be very large.
+            "showDevDebugOutput": "none",                                       // Shows output of GDB, helpful when something is not working right
+        },
+        {
+            "name": "Erase",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0",
+                "set ENABLE_CM0 0"
+            ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "monitor reset init",
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor erase_all",
+                "-gdb-exit"
+            ]
+        },
+        {
+            "name": "Program",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_TOOLS_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_TOOLS_LOC}/openocd/scripts" ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0",
+                "set ENABLE_CM0 0"
+            ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "openOCDLaunchCommands": [
+                "tcl_port disabled",
+                "telnet_port disabled",
+                "kitprog3 power_config on 3300"
+            ],
+            "overrideLaunchCommands": [
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor program ./build/${workspaceFolderBasename}.elf",
+                "monitor reset_config srst_only",
+                "monitor reset run",
+                "monitor psoc6.dap dpreg 0x04 0x00",
+                "-gdb-exit"
+            ],
+        },
+    ]
+}
