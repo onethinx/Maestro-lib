@@ -1,4 +1,4 @@
-const thisVersion = "1.0.1";
+const thisVersion = "1.0.3";
 const vscode = require("vscode");
 
 const minimumVersion = "1.0.2";
