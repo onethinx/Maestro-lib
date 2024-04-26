@@ -135,18 +135,13 @@ main = executable(
 #================================================================================================================================#
 # run post build
 
+#uncomment for a signed build output
 #signed = custom_target(
 #                        PROJECTNAME + '_signed.elf',
 #    output           : [PROJECTNAME + '_signed.elf'],
 #    build_by_default : true,
 #    command          : [cymcuelftool, '--sign',  PROJECTNAME + '.elf', '--output', PROJECTNAME + '_signed.elf', '--hex', PROJECTNAME + '.hex'],
 #    depends          : [main])
-noeepromout = custom_target(
-                        PROJECTNAME + '_no_cymeta.elf',
-    output           : [PROJECTNAME + '_no_cymeta.elf'],
-    build_by_default : true,
-    command          : [objcopy, '-R',  '.cymeta', PROJECTNAME + '.elf', PROJECTNAME + '_no_cymeta.elf'],
-    depends          : [main])
 
 mainout = custom_target(
                         PROJECTNAME + '.memcalc.txt',
