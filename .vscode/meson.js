@@ -1,4 +1,4 @@
-//import * as logging from '@cmt/logging';
+const thisVersion = "1.0.2";
 const vscode = require("vscode");
 
 const minimumVersion = "1.0.2";
