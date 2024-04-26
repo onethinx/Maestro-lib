@@ -193,10 +193,16 @@ otxClean = async (args) => {
         });
     }
 
+    ret = await executeTask("Creator: postbuild");
+    if (ret != 0) 
+	{ 
+		vscode.window.showErrorMessage("The build task terminated with exit code:" + JSON.stringify(ret));
+		return null;
+	}
 	const crossBuildFile = path.join(basePath, "cross_gcc.build");
     await updateMeson(crossBuildFile, [], []);
     const mesonBuildFile = path.join(basePath, "meson.build");
-   await updateMeson(mesonBuildFile, [], []);
+    await updateMeson(mesonBuildFile, [], []);
     ret = await executeTask("Meson: configure");
     if (ret != 0) 
 	{ 
