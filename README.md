@@ -8,4 +8,4 @@
 
 ## I don't see the update button!?
 That can happen for projects OTX-Maestro <= V1.0.1.
- - Follow [this link or for update instructions](https://github.com/onethinx/Maestro-lib/tree/main/update)
+ - Follow [this link for update instructions](https://github.com/onethinx/Maestro-lib/tree/main/update)
