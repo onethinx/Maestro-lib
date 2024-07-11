@@ -34,7 +34,7 @@ exports.execute = async (args) => {
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
 
 function getDate() {
     const d_t = new Date();
