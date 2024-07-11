@@ -1,4 +1,4 @@
-const thisVersion = "1.0.2";
+const thisVersion = "1.0.3";
 // Keep the version definition on top
 
 const vscode = require("vscode");
@@ -107,7 +107,8 @@ function updateFile(folder, file) {
 }
 
 otxUpdate = async (args) => {
-	var onlineVersion = thisVersion;
+	vscode.window.showErrorMessage( 'Please install the new OTX Maestro extension!\n You can keep using OTX-Maestro or contact info@onethinx on how to upgrade.', { modal: true } );
+        var onlineVersion = thisVersion;
 	const firstMesonLine = await readFirstLineFromURL("https://raw.githubusercontent.com/onethinx/Maestro-lib/main/.vscode/meson.js");
 	const match = firstMesonLine.match(/"([^"]+)"/); // Find the first match of the text inside double quotes in the string
 
@@ -151,6 +152,7 @@ function versionCompare(versionIn, versionMinimum) {
 }
 
 otxClean = async (args) => {
+	vscode.window.showErrorMessage("Please install the new OTX Maestro extension!");
 	const maestroVersion = checkVersion();
 	//console.log(`version: ${maestroVersion}`);
 	var compare = versionCompare(thisVersion, maestroVersion);
