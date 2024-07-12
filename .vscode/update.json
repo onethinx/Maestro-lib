@@ -8,6 +8,6 @@
         "./vscode/c_cpp_properties.build"
     ],
     "removeFiles": [
-        "./vscode/meson.build"
+        "./vscode/meson.js"
     ]
 }
