@@ -2,10 +2,10 @@
     "updateFiles": [
         "./meson.build",
         "./cross_gcc.build",
-        "./vscode/launch.build",
-        "./vscode/settings.build",
-        "./vscode/tasks.build",
-        "./vscode/c_cpp_properties.build"
+        "./vscode/launch.json",
+        "./vscode/settings.json",
+        "./vscode/tasks.json",
+        "./vscode/c_cpp_properties.json"
     ],
     "removeFiles": [
         "./vscode/meson.js"
