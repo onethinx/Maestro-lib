@@ -5,7 +5,8 @@
         "./.vscode/launch.json",
         "./.vscode/settings.json",
         "./.vscode/tasks.json",
-        "./.vscode/c_cpp_properties.json"
+        "./.vscode/c_cpp_properties.json",
+        "./.vscode/project.json"
     ],
     "removeFiles": [
         "./.vscode/meson.js"
