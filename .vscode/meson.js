@@ -141,6 +141,7 @@ otxUpdate = async (args) => {
 	try
 	{
 		updateFile(".vscode", 'project.json');
+		updateFile(".vscode", 'update.json');
 	}
 	catch {}
 	updateFile(".vscode", 'c_cpp_properties.json');
