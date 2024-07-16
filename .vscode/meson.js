@@ -138,6 +138,11 @@ otxUpdate = async (args) => {
 	updateFile(".vscode", 'launch.json');
 	updateFile(".vscode", 'settings.json');
 	updateFile(".vscode", 'tasks.json');
+	try
+	{
+		updateFile(".vscode", 'project.json');
+	}
+	catch {}
 	updateFile(".vscode", 'c_cpp_properties.json');
 	updateFile(".vscode", 'meson.js');
 	vscode.window.showInformationMessage(`Project updated to ${onlineVersion}`);
