@@ -9,6 +9,7 @@
         "./.vscode/project.json"
     ],
     "removeFiles": [
-        "./.vscode/meson.js"
+        "./.vscode/meson.js",
+        "./.vscode/otxC.js"
     ]
 }
