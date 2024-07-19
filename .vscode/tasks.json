@@ -2,25 +2,42 @@
     "version": "2.0.0",
     "tasks": [
     {
-        "label": "JLink_Power_Off",
-        "type": "shell",
-        "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff off"
+        "label": "OTX Maestro",
+        "command": "${command:otx-maestro.showInfo}",
         "options": {
             "statusbar": { 
-                "label": "$(terminal) JLink Power Off",
-                "hide" : "${notJlink}"
+                "label": "$(zap)OTX-Maestro$(zap)",
+                "color": "#25C0D8",
+                "alignment": "left",
+                "priority": 0,
+                "detail": "OTX-Maestro v${thisVersion}\n\n[Learn More](https://github.com/onethinx/OTX-Maestro/blob/main/README.md)"
             },
         },
     },
     {
-        "label": "JLink_Power_On",
+        "label": "JLink Power Off",
         "type": "shell",
-        "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff on"
+        "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff off",
+        "options": {
+            "statusbar": { 
+                "label": "$(terminal) JLink Power Off",
+                "hide" : "${notJlink}",
+                "alignment": "right",
+                "priority": 500
+            },
+        },
+    },
+    {
+        "label": "JLink Power On",
+        "type": "shell",
+        "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff on",
         "options": {
             "statusbar": { 
                 "label": "$(terminal) JLink Power On",
                 "hide" : "${notJlink}",
                 "color" : "#10C010",
+                "alignment": "right",
+                "priority": 500
             },
         }
     },
@@ -43,7 +60,9 @@
         "options": {
             "statusbar": { 
                 "label": "$(notebook-render-output) Update Project",
-                "hide" : false
+                "hide" : false,
+                "alignment": "right",
+                "priority": 500
             },
         }
     },
@@ -53,7 +72,9 @@
         "options": {
             "statusbar": { 
                 "label": "$(wrench) Select Programmer",
-                "hide" : false
+                "hide" : false,
+                "alignment": "right",
+                "priority": 500
             },
         }
     },
@@ -63,7 +84,9 @@
         "options": {
             "statusbar": { 
                 "label": "$(references) Clean-Reconfigure",
-                "detail" : "Clean and Reconfigure Workspace"
+                "detail" : "Clean and Reconfigure Workspace",
+                "alignment": "right",
+                "priority": 500
             },
         }
     },
@@ -73,7 +96,9 @@
         "options": {
             "statusbar": { 
                 "label": "$(file-binary) Build",
-                "detail" : "Build your project"
+                "detail" : "Build your project",
+                "alignment": "right",
+                "priority": 500
             },
         }
     },
@@ -84,11 +109,12 @@
             "statusbar": { 
                 "label": "$(rocket) Build-and-Launch",
                 "color" : "#FF8000",
-                "detail" : "Build and Launch your project"
+                "detail" : "Build and Launch your project",
+                "alignment": "right",
+                "priority": 500
             },
         },
     }, 
-
     {
         "label": "Meson: configure",
         "type": "shell",
