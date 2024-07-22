@@ -9,7 +9,7 @@
 ## I don't see the update button!?
 That can happen for projects OTX-Maestro <= V1.0.1.
 
-Please install the [otx-maestro extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=onethinx.otx-maestro) which gives the option to update at project startup.
+Please install the [OTX Maestro extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=onethinx.otx-maestro) which gives the option to update at project startup.
 
 ## How does it work?
 
