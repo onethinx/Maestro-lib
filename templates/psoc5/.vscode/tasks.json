@@ -51,7 +51,7 @@
         },
         "options": {
             "statusbar": { "hide" : true },
-            "cwd": "${workspaceFolder}/Onethinx_Creator.cydsn/"
+            "cwd": "${workspaceFolder}/PSoC_Creator.cydsn/"
         }
     }, 
     {
