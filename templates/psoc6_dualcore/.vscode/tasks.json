@@ -121,7 +121,7 @@
         "command": "${env:ONETHINX_PACK_LOC}/bin/meson setup --cross-file cross_gcc.build build",
         "args": [],
         "options": {
-            "statusbar": { "hide" : false },
+            "statusbar": { "hide" : true },
             "cwd": "${workspaceFolder}",
             "env": { "PATH": "${env:ONETHINX_PACK_LOC}/bin" },
         }
@@ -132,7 +132,7 @@
         "command": "ninja -C build",
         "args": [],
         "options": {
-            "statusbar": { "hide" : false },
+            "statusbar": { "hide" : true },
             "cwd": "${workspaceFolder}",
             "env": { "PATH": "${env:ONETHINX_PACK_LOC}/bin" },
         },
