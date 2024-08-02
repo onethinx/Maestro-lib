@@ -10,7 +10,9 @@
 That can happen for projects OTX-Maestro <= V1.0.1.
 
 Please install the [OTX Maestro extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=onethinx.otx-maestro) which gives the option to update at project startup.
-Still no `Update Project` button? Try `View` > `Command Palette` > type `OTX-Maestro: Update Project`
+Still no `Update Project` button? Try `View` > `Command Palette` > type `OTX-Maestro: Update Project`.
+
+In case of an ancient OTX-18 project, add an empty `meson.js` file inside the `.vscode` folder to get OTX-Maestro extension activated and recognized the OTX-18 project.
 
 ## How does it work?
 
