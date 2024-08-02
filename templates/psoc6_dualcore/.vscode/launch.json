@@ -25,7 +25,7 @@
                 "monitor psoc6 reset_halt sysresetreq"
             ],
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
-            "runToEntryPoint": "Reset_Handler",                                             // Halting point at launch start (eg "main" or "Reset_Handler"). Not used for a restart.  
+            "runToEntryPoint": "main",                                             // Halting point at launch start (eg "main" or "Reset_Handler"). Not used for a restart.  
             "preLaunchTask": "${command:otx-maestro.preLaunch}",                            // otx-maestro.preLaunch will build the project to prevent unmatched source code debugging
             "showDevDebugOutput": "none",                                                   // Shows output of GDB, helpful when something is not working right
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
