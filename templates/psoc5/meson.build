@@ -30,8 +30,8 @@ endian     = 'little'
 
 
 # Creator_PostBuild_prePostBuild_Lines - automatic insert of pre- and postbuild commands by Creator_PostBuild. Do not edit the two line below
-preBuildCommands = ''
-postBuildCommands = ''
+
+
 
 # set directories
 # Creator_PostBuild_Directory_Line - automatic insert of Creator Project main directory. Do not edit the line below

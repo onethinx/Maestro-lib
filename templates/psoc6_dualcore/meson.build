@@ -229,23 +229,12 @@ merged_m4_debug = custom_target( 'merged_m4_debug',
 
 # Custom targets for showing memory usage
 
-showoutput_m0 = custom_target( 'showoutput_m0',
-			input 				: [main_m0],
-			output           	: [PROJECTNAME + '.memcalc_m0.txt'],
+showoutput = custom_target( 'showoutput',
+			input 				: [main_m0, main_m4],
+			output           	: [PROJECTNAME + '.memcalc_m0.txt', PROJECTNAME + '.memcalc_m4.txt'],
 			command             : [
-									['sh', '-c', 'echo "------- M0 memory usage -------"', '&&'],
-        							[memcalc, readelf, '@INPUT@', '0x0e0000', '0x38000', '0x10000000', '0x08000000', '@OUTPUT0@']  #Flash 0x0e0000   SRAM 0x38000   Flash start 0x10000000   SRAM start 0x08000000
-								],
-			build_by_default 	: true,
-			build_always_stale  : true			# set to false to show memory usage only when sources have been changed
-)
-
-showoutput_m4 = custom_target( 'showoutput_m4',
-			input 				: [main_m4],
-			output           	: [PROJECTNAME + '.memcalc_m4.txt'],
-			command             : [
-									['sh', '-c', 'echo "------- M4 memory usage -------"', '&&'],
-        							[memcalc, readelf, '@INPUT@', '0x0e0000', '0x38000', '0x10000000', '0x08000000', '@OUTPUT0@']  #Flash 0x0e0000   SRAM 0x38000   Flash start 0x10000000   SRAM start 0x08000000
+        							[memcalc, '-InfoM0p Memory Usage:', readelf, '@INPUT0@', '0x080000', '0x24000', '0x10000000', '0x08000000', '@OUTPUT0@', '&&'],  #Flash 0x080000   SRAM 0x24000   Flash start 0x10000000   SRAM start 0x08000000
+									[memcalc, '-InfoM4 Memory Usage:', readelf, '@INPUT1@', '0x080000', '0x23800', '0x10080000', '0x08024000', '@OUTPUT1@']  #Flash 0x080000   SRAM 0x23800   Flash start 0x10080000   SRAM start 0x08024000
 								],
 			build_by_default 	: true,
 			build_always_stale  : true			# set to false to show memory usage only when sources have been changed

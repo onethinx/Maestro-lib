@@ -116,7 +116,7 @@
         },
     }, 
     {
-        "label": "Meson: configure",
+        "label": "OTX: configure",
         "type": "shell",
         "command": "${env:ONETHINX_PACK_LOC}/bin/meson setup --cross-file cross_gcc.build build",
         "args": [],
@@ -127,7 +127,7 @@
         }
     },
     {
-        "label": "Meson: build",
+        "label": "OTX: build",
         "type": "shell",
         "command": "ninja -C build",
         "args": [],

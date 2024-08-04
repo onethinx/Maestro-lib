@@ -31,6 +31,9 @@
         "label": "JLink Power On",
         "type": "shell",
         "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff on",
+        "windows":{
+            "command": "${env:ONETHINX_PACK_LOC}/bin/JlinkOnOff/JlinkOnOff.exe on"
+        },
         "options": {
             "statusbar": { 
                 "label": "$(terminal) JLink Power On",
@@ -116,7 +119,7 @@
         },
     }, 
     {
-        "label": "Meson: configure",
+        "label": "OTX: configure",
         "type": "shell",
         "command": "${env:ONETHINX_PACK_LOC}/bin/meson setup --cross-file cross_gcc.build build",
         "args": [],
@@ -127,7 +130,23 @@
         }
     },
     {
-        "label": "Meson: build",
+        "label": "AttachDelay",
+        "type": "shell",
+        "windows": {
+            "command": "timeout /T 6 /NOBREAK"
+        },
+        "linux": {
+            "command": "sleep 6"
+        },
+        "osx": {
+            "command": "sleep 6"
+        },
+        "options": {
+            "statusbar": { "hide" : true }
+        }
+    },
+    {
+        "label": "OTX: build",
         "type": "shell",
         "command": "ninja -C build",
         "args": [],

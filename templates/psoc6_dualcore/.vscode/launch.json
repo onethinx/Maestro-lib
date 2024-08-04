@@ -24,6 +24,9 @@
             "overrideResetCommands": [
                 "monitor psoc6 reset_halt sysresetreq"
             ],
+            "presentation": {
+                "group": "1 Debug"
+            },
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
             "runToEntryPoint": "main",                                             // Halting point at launch start (eg "main" or "Reset_Handler"). Not used for a restart.  
             "preLaunchTask": "${command:otx-maestro.preLaunch}",                            // otx-maestro.preLaunch will build the project to prevent unmatched source code debugging
@@ -52,6 +55,9 @@
             "overrideResetCommands": [
                 "monitor psoc6 reset_halt sysresetreq"
             ],
+            "presentation": {
+                "group": "1 Debug"
+            },
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
             "runToEntryPoint": "main",                                                      // Halting point at launch start. Not used for a restart
             "preLaunchTask": "${command:otx-maestro.preLaunch}",                            // otx-maestro.preLaunch will build the project to prevent unmatched source code debugging
@@ -76,11 +82,9 @@
             "openOCDPreConfigLaunchCommands": [
                 "set ATTACH 1",
             ],
-            "overrideAttachCommands2": [
-                "set mem inaccessible-by-default off",
-                "-enable-pretty-printing",
-                "monitor halt"
-            ],
+           "presentation": {
+                "group": "2 Attach"
+            },
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
             "showDevDebugOutput": "none",                                                   // Shows output of GDB, helpful when something is not working right
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
@@ -101,11 +105,9 @@
                 "set ENABLE_CM0 0",
                 "set ATTACH 1",
             ],
-            "overrideAttachCommands2": [
-                "set mem inaccessible-by-default off",
-                "-enable-pretty-printing",
-                "monitor halt"
-            ],
+            "presentation": {
+                "group": "2 Attach"
+            },
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
             "showDevDebugOutput": "none",                                                   // Shows output of GDB, helpful when something is not working right
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
@@ -115,7 +117,7 @@
             "type": "cortex-gdb",                                                           // Onethinx modified cortex-debug extension
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}_M0debug.elf",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}_M0_debug.elf",
             "servertype": "openocd",
             "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
             "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
@@ -132,6 +134,9 @@
                 "-gdb-exit"
                 
             ],
+            "presentation": {
+                "group": "3 ProgramErase"
+            },
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
         },
         {
@@ -152,10 +157,13 @@
                 "monitor psoc6.dap dpreg 0x04 0x00",
                 "-gdb-exit"
             ],
+            "presentation": {
+                "group": "3 ProgramErase"
+            },
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
         },
         {
-            "name": "Debug CM4 #",
+            "name": "Debug CM4 ",
             "type": "cortex-gdb",                                                           // Onethinx modified cortex-debug extension
             "request": "attach",
             "cwd": "${workspaceRoot}",
@@ -170,16 +178,12 @@
                 "set ENABLE_CM0 0",
                 "set ATTACH 1",
             ],
-            "overrideAttachCommands2": [
-                "set mem inaccessible-by-default off",
-                "-enable-pretty-printing",
-                "monitor halt"
-            ],
-                "presentation": {
+            "presentation": {
                 "hidden": true,
-                "group": "cm4"
-            }
+                "group": "1 Debug"
+            },
             "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",                  // svdFile is optional, it can be very large.
+            "preLaunchTask": "AttachDelay",                                                 // Attach delayed to make sur the debug server already has started
             "showDevDebugOutput": "none",                                                   // Shows output of GDB, helpful when something is not working right
             "showServerOutput": "switch",                                                   // Shows output of the GDB server in the Debug Console
         }
@@ -187,7 +191,10 @@
     "compounds": [
         {
             "name": "Debug CM0 + CM4",
-            "configurations": ["Debug CM0", "Debug CM4 #"],
+            "configurations": ["Debug CM0", "Debug CM4 "],
+            "presentation": {
+                "group": "1 Debug"
+            }
         }
     ]
 }
