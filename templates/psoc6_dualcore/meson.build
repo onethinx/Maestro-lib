@@ -231,11 +231,13 @@ merged_m4_debug = custom_target( 'merged_m4_debug',
 
 showoutput = custom_target( 'showoutput',
 			input 				: [main_m0, main_m4],
+			depends				: [merged_m0_debug, merged_m4_debug],
 			output           	: [PROJECTNAME + '.memcalc_m0.txt', PROJECTNAME + '.memcalc_m4.txt'],
 			command             : [
-        							[memcalc, '-InfoM0p Memory Usage:', readelf, '@INPUT0@', '0x080000', '0x24000', '0x10000000', '0x08000000', '@OUTPUT0@', '&&'],  #Flash 0x080000   SRAM 0x24000   Flash start 0x10000000   SRAM start 0x08000000
-									[memcalc, '-InfoM4 Memory Usage:', readelf, '@INPUT1@', '0x080000', '0x23800', '0x10080000', '0x08024000', '@OUTPUT1@']  #Flash 0x080000   SRAM 0x23800   Flash start 0x10080000   SRAM start 0x08024000
+        							[memcalc,'-Dual', '-InfoMemory Usage Map Cortex M0p:', readelf, '@INPUT0@', '0x080000', '0x24000', '0x10000000', '0x08000000', '@OUTPUT0@'],  #Flash 0x080000   SRAM 0x24000   Flash start 0x10000000   SRAM start 0x08000000
+									['-InfoMemory Usage Map Cortex M4:', readelf, '@INPUT1@', '0x080000', '0x23800', '0x10080000', '0x08024000', '@OUTPUT1@']  #Flash 0x080000   SRAM 0x23800   Flash start 0x10080000   SRAM start 0x08024000
 								],
 			build_by_default 	: true,
+			console			 	: true,
 			build_always_stale  : true			# set to false to show memory usage only when sources have been changed
 )
