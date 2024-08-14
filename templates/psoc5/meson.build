@@ -61,7 +61,7 @@ gdb      		= find_program(GCC_DIR + '/arm-none-eabi-gdb').path()
 cymcuelftool 	= find_program(BIN_DIR + '/cymcuelftool').path()
 readelf  		= find_program(GCC_DIR + '/arm-none-eabi-readelf').path()
 memcalc 		= find_program(BIN_DIR + '/memcalc').path()
-cyelftool       = find_program(MESON_SOURCE_LOC + '/config/cyelftool').path()
+cyelftool       = find_program(BIN_DIR + '/cyelftool').path()
 
 #================================================================================================================================#
 # setup compile & link arguments
