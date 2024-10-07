@@ -17,5 +17,5 @@ gdb     = GCC_DIR + '/arm-none-eabi-gdb'
 [host_machine]
 system     = 'none'
 cpu_family = 'arm'
-cpu        = 'cortex-m4'
+cpu        = 'cortex-m3'
 endian     = 'little'
