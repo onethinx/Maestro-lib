@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "updatePackage": "https://raw.githubusercontent.com/onethinx/Maestro-lib/main/templates/stm32f303/.vscode/update.json",
+    "excludeFiles": ["meson.build", ".vscode/tasks.json", ".vscode/brd.cfg", ".vscode/settings.json"],
+    "project": {
+        "sourceFolders": [
+            "Core",
+            "Drivers/STM32F3xx_HAL_Driver",
+            "Drivers/CMSIS/Include",
+            "Drivers/CMSIS/Device/ST/STM32F3xx/Include"
+        ]
+    }
+}

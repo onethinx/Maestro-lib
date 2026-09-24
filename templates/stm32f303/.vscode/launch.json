@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/firmware.elf",
+            "servertype": "openocd",
+            "serverpath": "openocd",
+            "gdbPath": "arm-none-eabi-gdb",
+            "configFiles": [".vscode/brd.cfg"],
+            "runToEntryPoint": "main",
+            "preLaunchTask": "${command:otx-maestro.preLaunch}",
+            "showServerOutput": "switch"
+        },
+        {
+            "name": "Program",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/firmware.elf",
+            "servertype": "openocd",
+            "serverpath": "openocd",
+            "gdbPath": "arm-none-eabi-gdb",
+            "configFiles": [".vscode/brd.cfg"],
+            "preLaunchTask": "${command:otx-maestro.preLaunch}",
+            "overrideLaunchCommands": [
+                "monitor program {build/firmware.elf} verify reset",
+                "-gdb-exit"
+            ],
+            "showServerOutput": "switch"
+        }
+    ]
+}

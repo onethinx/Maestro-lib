@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean-Reconfigure",
+            "command": "${command:otx-maestro.clean}",
+            "options": { "statusbar": { "label": "$(references) Configure", "alignment": "right", "priority": 500 } }
+        },
+        {
+            "label": "Build",
+            "command": "${command:otx-maestro.build}",
+            "options": { "statusbar": { "label": "$(file-binary) Build", "alignment": "right", "priority": 490 } }
+        },
+        {
+            "label": "Build-and-Launch",
+            "command": "${command:otx-maestro.launch}",
+            "options": { "statusbar": { "label": "$(debug-alt) Debug", "alignment": "right", "priority": 480 } }
+        },
+        {
+            "label": "Program",
+            "command": "${command:otx-maestro.launch}",
+            "args": ["Program"],
+            "options": { "statusbar": { "label": "$(zap) Program", "alignment": "right", "priority": 470 } }
+        },
+        {
+            "label": "Select Programmer",
+            "command": "${command:otx-maestro.selectProgrammer}",
+            "options": { "statusbar": { "label": "$(wrench) Programmer", "alignment": "right", "priority": 460 } }
+        },
+        {
+            "label": "OTX: configure",
+            "type": "process",
+            "command": "meson",
+            "args": ["setup", "--cross-file", "cross_gcc.build", "build"],
+            "options": { "cwd": "${workspaceFolder}", "statusbar": { "hide": true } },
+            "problemMatcher": []
+        },
+        {
+            "label": "OTX: build",
+            "type": "process",
+            "command": "meson",
+            "args": ["compile", "-C", "build"],
+            "options": { "cwd": "${workspaceFolder}", "statusbar": { "hide": true } },
+            "problemMatcher": [{ "base": "$gcc", "fileLocation": ["relative", "${workspaceFolder}/build"] }]
+        }
+    ]
+}
